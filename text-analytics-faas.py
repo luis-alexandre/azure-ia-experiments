@@ -12,7 +12,7 @@ def main():
     documents = {
         'documents': [
             {'id': '1',
-             'text': 'Eu estou muito feliz por estar aqui.'}
+             'text': 'Eu estou muito feliz por aprender coisa nova com a Microsoft.'}
         ]
     }
 
@@ -32,6 +32,15 @@ def main():
 
     print(response.status_code)
     print(languages['documents'][0]['detectedLanguages'][0]['name'])
+    print()
+
+    # Get key phrases from text
+    key_phrase_url_api = text_analytics_base_url + "/text/analytics/v2.1/keyPhrases"
+    response = requests.post(key_phrase_url_api, headers=headers, json=documents)
+    key_phrases = response.json()
+
+    print(response.status_code)
+    print(key_phrases)
     print()
 
 
